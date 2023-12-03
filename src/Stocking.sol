@@ -103,15 +103,16 @@ contract Stock {
 
     //function view all
 
-    function getAllProducts() public view returns (Product[] memory) {
-    Product[] memory infos = new Product[](_productIndex);
-    for (uint i = 0; i < _productIndex; ++i) {
-        infos[i] = products[i];
+    function getAllProducts() public view returns (Product[] memory infos) {
+        infos = new Product[](_productIndex);
+        uint index = 0;
+        for (uint i = 0; i < _productIndex; ++i) {
+            infos[index] = products[i];
+            index += 1;
+        }
+
+        return infos;
     }
-
-    return infos;
-}
-
 
     //function add customer
     function addCustomer(string calldata name, string calldata contact, address custaddress) external onlyAdmin {
